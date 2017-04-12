@@ -1,0 +1,33 @@
+I believe fully associative caches are not working as intended with the hit rates being lower than they should.Also some of the addresses given contain 36 bits in them such as the fourth line in trace1.txt making it not behave as intended with my program. I also ran accross an error with make telling me I was making changes a few seconds into the future.
+
+Also cache write is not working for wb, not sure why. I have where in my search function to set the dirty bit to 1 if it finds it already exists in the file, and in my insert_line function I check if the line being replaced has a dirty bit set to 1 and if it does I up the memwrite counter by 1 as long as the write policy is wb.
+
+10000 testcase would crash everytime I brought it into VI, so I was only able to do the 1000 line one.
+
+Not Switched:
+32 assoc:2 4 FIFO wb
+MR:336
+MW:1
+CH:664
+CM:336
+
+32 assoc:2 4 FIFO wt
+MR:336
+MW:334
+CH:664
+CM:336
+
+32 assoc:2 4 LRU wb
+MR:336
+MW:0
+CH:664
+CM:336
+
+32 assoc:2 4 LRU wt
+MR:336
+MW:334
+CH:664
+CM:366
+
+
+Switched: The way my program is set up it does not work well with the set and tag switched, however what would be expected is that there are more cache misses as everything would be more likely to be put into the same set since the the bits on the leftmost side are least likely to change meaning that there is a higher chance of things such as thrashing to occur
