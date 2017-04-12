@@ -1,4 +1,4 @@
-PROGRAMS = first second third fourth fifth
+PROGRAMS = count
 CC = gcc
 CFLAGS = -Wall
 
